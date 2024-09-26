@@ -45,3 +45,7 @@ Open the Terminal and run the following commands one line at a time:
 cd Desktop/directus
 docker compose up
 Directus should now be available at http://localhost:8055 or http://127.0.0.1:8055.
+
+________________________________
+
+https://www.civo.com/learn/fixing-networking-for-docker

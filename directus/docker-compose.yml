@@ -1,0 +1,23 @@
+version: "3"
+services:
+  directus:
+    image: directus/directus:11.1.0
+    ports:
+      - 8055:8055
+    volumes:
+      - ./database:/directus/database
+      - ./uploads:/directus/uploads
+      - ./extensions:/directus/extensions
+    environment:
+      SECRET: "replace-with-secure-random-value"
+      ADMIN_EMAIL: "barkovw@ya.ru"
+      ADMIN_PASSWORD: "d1r3ctu5"
+      DB_CLIENT: "sqlite3"
+      DB_FILENAME: "/directus/database/data.db"
+      WEBSOCKETS_ENABLED: "true"
+
+networks:
+  default:
+    driver: bridge
+    driver_opts:
+      com.docker.network.driver.mtu: 1450     

@@ -9,6 +9,7 @@ services:
       - ./database:/directus/database
       - ./uploads:/directus/uploads
       - ./extensions:/directus/extensions
+      - /config/config.yml:/directus/config.yml
     environment:
       SECRET: "replace-with-secure-random-value"
       ADMIN_EMAIL: "barkovw@ya.ru"
@@ -16,7 +17,7 @@ services:
       DB_CLIENT: "sqlite3"
       DB_FILENAME: "/directus/database/data.db"
       WEBSOCKETS_ENABLED: "true"
-
+    restart: always
 networks:
   default:
     driver: bridge

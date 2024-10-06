@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+  <html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+	
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="yandex-verification" content="bc8d1899458692ab" />
+   
+
+    <title>Бесплатная доставка цветов в Феодосии – От 2000 руб.</title>
+
+    <link rel="icon" href="https://iskushenie24.ru/favicon.ico" type="image/x-icon">
+    
+     <!--<link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css"> -->
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+   
+    <section class="row5" id="row5">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="row3__title">Выберите свой букет</h2>
+            <span class="row3__subtitle">Бесплатно доставим Ваш букет от 2000 руб. по адресу в <strong>Феодосии</strong> за 1 час</span>
+          </div>
+        </div>
+            
+      <div id="app">
+        <div class="row mt-80">
+          <div class="w-100"></div>
+          <div class="col-12 col-md-3  col-lg-3  col-xl-3" v-for="(item, index) in items" :key="index">
+            <div class="row5__item-container">
+              <img class="row5__item" :src="getImageUrl(item.image)" alt="Product Image">
+              <span class="row5__item-article">{{ item.article }}</span>
+              <span class="row5__item-price"><span class="row5__sf">от</span> {{ item.price }} руб.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+          <script>
+            new Vue({
+              el: '#app',
+              data: {
+                items: []
+              },
+              methods: {
+                async fetchItems() {
+                  try {
+                    const response = await axios.get('http://79.137.202.21:8055/items/showcase', {
+                      params: {
+                        limit: 5
+                      }
+                    });
+                    this.items = response.data.data;
+                  } catch (error) {
+                    console.error('Error fetching data:', error);
+                  }
+                },
+                getImageUrl(image) {
+                  return `http://79.137.202.21:8055/assets/${image}`;
+                }
+              },
+              mounted() {
+                this.fetchItems();
+              }
+            });
+          </script>
+        <p class="row5__text">Вам <span class="text-bold">необходимо заказать букет</span> или получить консультацию флориста ?<br/>
+        Ответим на все Ваши вопросы и <span class="text-bold">оформим заявку по телефону. Звоните!</span></p>
+        <span class="suport-phone"><a href="tel:+79787433623" onclick="ym(50835353, 'reachGoal', 'click-on-phone-isku'); return true;">+7 978 743 36 23</a></span>
+      </div>
+    </section>
+
+<script src="libs/jquery/jquery-3.2.1.min.js"></script>
+<script src="libs/popper/popper.js"></script>
+<script src="js/main.js"></script> 
+    
+  </body>
+  </html>
+
